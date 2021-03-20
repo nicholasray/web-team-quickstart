@@ -1,4 +1,4 @@
-# Welcome to the Web team!
+# Welcome to the Web team! 🍌
 
 After installing
 [MediaWiki-Docker](https://www.mediawiki.org/wiki/MediaWiki-Docker), it is time
