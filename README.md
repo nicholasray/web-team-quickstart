@@ -7,6 +7,9 @@ to install the extensions and skins that the Web team uses most often.
 From your `mediawiki` root folder run:
 
 ```sh
+# Vector
+git clone "https://gerrit.wikimedia.org/r/mediawiki/skins/Vector" skins/Vector
+
 # Minerva & MobileFrontend
 git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/Cite" extensions/Cite
 git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/MobileFrontend" extensions/MobileFrontend
