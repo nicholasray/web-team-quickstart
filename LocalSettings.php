@@ -187,16 +187,16 @@ $wgVectorDefaultSkinVersion = '2';
 $wgLogos = [
 	'icon' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia.png',
 	'tagline' => [
-					'src' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-en.svg',
-					'width' => 117,
-					'height' => 13,
+		'src' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-en.svg',
+		'width' => 117,
+		'height' => 13,
 	],
 	'1x' => 'https://en.wikipedia.org/static/images/project-logos/enwiki.png',
 	'2x' => 'https://en.wikipedia.org/static/images/project-logos/enwiki-2x.png',
 	'wordmark' => [
-					'src' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en.svg',
-					'width' => 119,
-					'height' => 18,
+		'src' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en.svg',
+		'width' => 119,
+		'height' => 18,
 	],
 ];
 
@@ -259,19 +259,27 @@ wfLoadExtension( 'EventBus' );
 wfLoadExtension( 'EventStreamConfig' );
 wfLoadExtension( 'WikimediaEvents' );
 
-# Useful when testing language variants
-$wgUsePigLatinVariant = true;
-
 # Universal Language Selector
 $wgULSPosition = 'interlanguage';
 $wgULSCompactLanguageLinksBetaFeature = false;
 wfLoadExtension( 'UniversalLanguageSelector' );
 
+# Language
+$wgVectorLanguageInHeader = true;
+# Useful when testing language variants
+$wgUsePigLatinVariant = true;
+
 # WVUI Search
 $wgVectorUseWvuiSearch = true;
-$wgVectorDefaultSkinVersion = 2;
 $wgVectorSearchHost = 'en.wikipedia.org';
 $wgVectorWvuiSearchOptions = [
 		"showThumbnail" => true,
 		"showDescription" => true
 ];
+
+# Content Provider. Use enwiki content. Can be helpful when trying to see how production articles look.
+/* $wgMFAlwaysUseContentProvider = true; */
+/* $wgMFContentProviderClass = 'MobileFrontend\ContentProviders\MwApiContentProvider'; */
+/* $wgMFMwApiContentProviderBaseUri = 'https://en.wikipedia.org/w/api.php'; */
+/* $wgMFContentProviderScriptPath = 'https://en.wikipedia.org/w'; */
+/* $wgMFContentProviderTryLocalContentFirst = true; */
