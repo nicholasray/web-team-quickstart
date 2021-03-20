@@ -4,7 +4,7 @@ After installing
 [MediaWiki-Docker](https://www.mediawiki.org/wiki/MediaWiki-Docker), it is time
 to install the extensions and skins that the Web team uses most often.
 
-From your `mediawiki` root folder run:
+1) From your `mediawiki` root folder run:
 
 ```sh
 # Vector
@@ -32,10 +32,10 @@ git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/WikimediaEvents" 
 git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary"
 ```
 
-Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
+2) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
 that you can put in your root directory to properly setup these.
 
-Run the update script to update the database:
+3) Run the update script to update the database:
 ```
 docker-compose exec mediawiki php maintenance/update.php
 ```
