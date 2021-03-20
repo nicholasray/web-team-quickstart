@@ -256,7 +256,7 @@ $wgEventServices = [
 $wgEventServiceDefault = 'eventgate';
 
 # Turn off when running PHPUnit tests (the tests will complain if you don't).
-/* $wgEnableEventBus = 'TYPE_ALL'; */
+$wgEnableEventBus = 'TYPE_ALL';
 
 # EventLogging
 # Note: In order for EventLoggging to pick up your local schemas, make sure
