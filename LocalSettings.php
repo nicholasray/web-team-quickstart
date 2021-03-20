@@ -184,13 +184,15 @@ $wgDebugLogGroups = [
 # Defaults Vector to latest skin for anonymous users instead of legacy.
 $wgVectorDefaultSkinVersion = '2';
 
-# Content Provider. Use enwiki content. Can be helpful when trying to see how
-# production articles look.
-$wgMFAlwaysUseContentProvider = true;
-$wgMFContentProviderClass = 'MobileFrontend\ContentProviders\MwApiContentProvider';
-$wgMFMwApiContentProviderBaseUri = 'https://en.wikipedia.org/w/api.php';
-$wgMFContentProviderScriptPath = 'https://en.wikipedia.org/w';
-$wgMFContentProviderTryLocalContentFirst = true;
+# Content Provider used to show articles from enwiki. Can be helpful when trying to see how
+# production articles look locally, but be aware that there are some gotchas
+# with using this that don't perfectly match the production environment. Use at
+# your own discretion!
+/* $wgMFAlwaysUseContentProvider = true; */
+/* $wgMFContentProviderClass = 'MobileFrontend\ContentProviders\MwApiContentProvider'; */
+/* $wgMFMwApiContentProviderBaseUri = 'https://en.wikipedia.org/w/api.php'; */
+/* $wgMFContentProviderScriptPath = 'https://en.wikipedia.org/w'; */
+/* $wgMFContentProviderTryLocalContentFirst = true; */
 
 $wgLogos = [
 	'icon' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia.png',
