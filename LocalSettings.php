@@ -283,6 +283,6 @@ $wgUsePigLatinVariant = true;
 $wgVectorUseWvuiSearch = true;
 $wgVectorSearchHost = 'en.wikipedia.org';
 $wgVectorWvuiSearchOptions = [
-		"showThumbnail" => true,
-		"showDescription" => true
+	"showThumbnail" => true,
+	"showDescription" => true
 ];
