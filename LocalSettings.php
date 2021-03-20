@@ -277,9 +277,10 @@ $wgVectorWvuiSearchOptions = [
 		"showDescription" => true
 ];
 
-# Content Provider. Use enwiki content. Can be helpful when trying to see how production articles look.
-/* $wgMFAlwaysUseContentProvider = true; */
-/* $wgMFContentProviderClass = 'MobileFrontend\ContentProviders\MwApiContentProvider'; */
-/* $wgMFMwApiContentProviderBaseUri = 'https://en.wikipedia.org/w/api.php'; */
-/* $wgMFContentProviderScriptPath = 'https://en.wikipedia.org/w'; */
-/* $wgMFContentProviderTryLocalContentFirst = true; */
+# Content Provider. Use enwiki content. Can be helpful when trying to see how
+# production articles look.
+$wgMFAlwaysUseContentProvider = true;
+$wgMFContentProviderClass = 'MobileFrontend\ContentProviders\MwApiContentProvider';
+$wgMFMwApiContentProviderBaseUri = 'https://en.wikipedia.org/w/api.php';
+$wgMFContentProviderScriptPath = 'https://en.wikipedia.org/w';
+$wgMFContentProviderTryLocalContentFirst = true;
