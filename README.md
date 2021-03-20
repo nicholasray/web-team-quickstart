@@ -33,7 +33,7 @@ git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary"
 ```
 
 2) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
-that you can put in your root directory to properly set these up.
+that you can put in your root directory to configure these properly.
 
 3) Run the update script to update the database:
 ```
