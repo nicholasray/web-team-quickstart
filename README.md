@@ -27,9 +27,6 @@ git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventBus" extensi
 git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventStreamConfig" extensions/EventStreamConfig
 git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/WikimediaEvents" extensions/WikimediaEvents
 git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary"
-
-# IMPORTANT: Make sure after enabling these extensions in your LocalSettings.php to run:
-# docker-compose exec mediawiki php maintenance/update.php
 ```
 
 Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
