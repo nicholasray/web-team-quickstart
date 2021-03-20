@@ -259,8 +259,8 @@ $wgEventServiceDefault = 'eventgate';
 /* $wgEnableEventBus = 'TYPE_ALL'; */
 
 # EventLogging
-# Note: Make sure EventLogging/devserver/eventgate.config.yaml
-# `schema_base_uris` point to for it to pick up your local schemas:
+# Note: In order for EventLoggging to pick up your local schemas, make sure
+# EventLogging/devserver/eventgate.config.yaml `schema_base_uris` point to: 
 # - ../repositories/secondary/jsonschema
 wfLoadExtension( 'EventLogging' );
 # EventLogging requires EventBus
