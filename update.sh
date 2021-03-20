@@ -7,4 +7,4 @@ time for i in . extensions/*/ skins/*/; do
 done
 
 # this will update the database schema
-docker exec -it boxwiki_boxwiki_1 php maintenance/update.php
+docker-compose exec mediawiki php maintenance/update.php

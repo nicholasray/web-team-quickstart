@@ -33,6 +33,13 @@ git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary"
 ```
 
 Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
-that you can put in your root directory to properly setup these extensions. If
-everything goes to plan, you should be on your way! 🎉
+that you can put in your root directory to properly setup these extensions. 
 
+Run the update script to update the database:
+```
+docker-compose exec mediawiki php maintenance/update.php
+```
+
+If everything goes to plan, you should be on your way! 🎉
+
+Note: You will also find an [update.sh](update script) in this repo which can be used to update MediaWiki core and all of its extensions and skins which you might find useful 😀
