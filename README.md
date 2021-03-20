@@ -39,4 +39,6 @@ docker-compose exec mediawiki php maintenance/update.php
 
 If everything goes to plan, you should be on your way! 🎉
 
-Note: You will also find an [update.sh](update script) in this repo which can be used to update MediaWiki core and all of its extensions and skins which you might find useful 😀
+Note: You will also find an [update.sh](script) in this repo which can be used
+to update MediaWiki core and all of its extensions and skins which you might
+find useful. Run it from the root of your `mediawiki` folder. 😀
