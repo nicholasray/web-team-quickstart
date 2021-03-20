@@ -33,7 +33,9 @@ git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary"
 ```
 
 2) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
-that you can put in your root directory to configure these properly. This file also contains config that generally makes the development workflow easier while on the Web team.
+that you can put in your `mediawiki` root directory to configure these properly.
+This file also contains config that generally makes the development workflow
+easier while on the Web team.
 
 3) Run the update script to update the database:
 ```
