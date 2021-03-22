@@ -246,11 +246,11 @@ $wgEventLoggingStreamNames = false;
 // need to register those streams for use by EventLogging, e.g.
 // $wgEventLoggingStreamNames = ['my.stream.name'];
 
-// Point to eventgate dev server. Running in docker container on
-// mac so use host.docker.internal to connect to eventgate server
-// running on host.
+// Point to eventgate dev server. Running in docker container on mac so use
+// docker.for.mac.host.internal (not sure why host.docker.internal isn't
+// working) to connect to eventgate server running on host.
 $wgEventServices = [
-	'eventgate' => [ 'url' => 'http://host.docker.internal:8192/v1/events' ]
+	'eventgate' => [ 'url' => 'http://docker.for.mac.host.internal:8192/v1/events' ]
 ];
 
 $wgEventServiceDefault = 'eventgate';
@@ -260,7 +260,7 @@ $wgEnableEventBus = 'TYPE_ALL';
 
 # EventLogging
 # Note: In order for EventLoggging to pick up your local schemas, make sure
-# EventLogging/devserver/eventgate.config.yaml `schema_base_uris` point to: 
+# EventLogging/devserver/eventgate.config.yaml `schema_base_uris` point to:
 # - ../repositories/secondary/jsonschema
 wfLoadExtension( 'EventLogging' );
 # EventLogging requires EventBus
