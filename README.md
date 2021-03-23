@@ -1,6 +1,6 @@
 # Welcome to the Web team! 👋
 
-**After** following all of the steps from `DEVELOPERS.md` in installing
+**After** following all of the steps from `DEVELOPERS.md` described in installing
 [MediaWiki-Docker](https://www.mediawiki.org/wiki/MediaWiki-Docker), it is time
 to install the extensions and skins that the Web team uses most often.
 
