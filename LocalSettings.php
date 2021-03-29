@@ -188,11 +188,8 @@ $wgVectorDefaultSkinVersion = '2';
 # production articles look locally, but be aware that there are some gotchas
 # with using this that don't perfectly match the production environment. Use at
 # your own discretion!
+/* $wgMFContentProviderClass = "MobileFrontend\\ContentProviders\\MwApiContentProvider"; */
 /* $wgMFAlwaysUseContentProvider = true; */
-/* $wgMFContentProviderClass = 'MobileFrontend\ContentProviders\MwApiContentProvider'; */
-/* $wgMFMwApiContentProviderBaseUri = 'https://en.wikipedia.org/w/api.php'; */
-/* $wgMFContentProviderScriptPath = 'https://en.wikipedia.org/w'; */
-/* $wgMFContentProviderTryLocalContentFirst = true; */
 
 $wgLogos = [
 	'icon' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia.png',
@@ -222,6 +219,7 @@ wfLoadSkin( 'MinervaNeue' );
 # Popups
 $wgPopupsGateway = 'restbaseHTML';
 $wgPopupsRestGatewayEndpoint = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
+$wgArticlePath = "/wiki/$1";
 wfLoadExtension( 'Popups' );
 
 # Echo
