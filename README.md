@@ -42,6 +42,8 @@ easier while on the Web team.
 docker-compose exec mediawiki php maintenance/update.php
 ```
 
+4) **Note**: If you are using the [`git-review`](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit) tool, you'll want to run `git remote rm origin` **before** running `git-review -s` in order for it setup the git remote origin (using `ssh://`) correctly. 
+
 If everything goes to plan, you should be on your way! 🎉
 
 Note: You will also find an [update script](update.sh) in this repo which can be used
