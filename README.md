@@ -42,7 +42,7 @@ easier while on the Web team.
 docker-compose exec mediawiki php maintenance/update.php
 ```
 
-4) **Note**: If you are using the [`git-review`](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit) tool, you'll want to run `git remote rm origin` **before** running `git-review -s` for each repo you use git-review (likely all the repos you just cloned) in order for it setup the git remote origin correctly (`git remote -v` should be using `ssh://...` and not `https://..`) .
+4) **Note**: If you are using the [`git-review`](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit) tool, you'll want to run `git remote rm origin` **before** running `git-review -s` for each repo you use git-review (likely all the repos you just cloned) in order for it to setup the git remote origin correctly (`git remote -v` should be using `ssh://...` and not `https://..`) .
 
 If everything goes to plan, you should be on your way! 🎉
 
