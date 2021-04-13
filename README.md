@@ -54,8 +54,7 @@ find useful. Run it from the root of your `mediawiki` folder. 😀
 
 The EventLogging extension and the event logging platform in general are a bit more complicated to setup than the rest of the extensions.
 
-https://www.mediawiki.org/wiki/Extension:EventLogging/Guide, https://wikitech.wikimedia.org/wiki/Event_Platform/Instrumentation_How_To, and https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/extensions/EventLogging/+/refs/heads/master/devserver/README.md will be your best source of general documentation on event logging. Note that the event logging platform recently went through a huge refactor so some of the documentation might be lacking.
-If you've used the quickstart repo, the next steps to see events locally look like this:
+https://www.mediawiki.org/wiki/Extension:EventLogging/Guide, https://wikitech.wikimedia.org/wiki/Event_Platform/Instrumentation_How_To, and https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/extensions/EventLogging/+/refs/heads/master/devserver/README.md will be your best source of general documentation on event logging. If you've used the quickstart repo, the next steps to see events locally look like this:
 
 1. Change L53 (https://schema.wikimedia.org/repositories/secondary/jsonschema)  of  extensions/EventLogging/devserver/eventgate.config.yaml  to point to your local schemas  ( ../repositories/secondary/jsonschema ) instead of the production schemas. That will eventually be necessary when you do development work involving schemas).
 2. Per the docs,  Run `npm i`  from the EventLogging extension root folder and then `npm run eventgate-devserver`  to get the eventgate-devserver running
