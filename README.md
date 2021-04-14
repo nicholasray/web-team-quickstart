@@ -29,7 +29,7 @@ git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventLogging" ext
 git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventBus" extensions/EventBus
 git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventStreamConfig" extensions/EventStreamConfig
 git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/WikimediaEvents" extensions/WikimediaEvents
-git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary"
+git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary" extensions/repositories/secondary
 ```
 
 2) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
