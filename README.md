@@ -42,7 +42,7 @@ easier while on the Web team.
 docker-compose exec mediawiki php maintenance/update.php
 ```
 
-4) **Note**: If you are using the [`git-review`](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit) tool, you'll want to run `git remote rm origin` **before** running `git-review -s` for each repo you use git-review (likely all the repos you just cloned) in order for it to setup the git remote origin correctly (`git remote -v` should be using `ssh://...` for the origin and not `https://...`) . Because removing the origin also removes the tracking info, you'll also want to run `git branch --set-upstream-to=origin/master master` so that git pull and the `update.sh` script in this repo can work.
+4) **Note**: If you are using the [`git-review`](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit) tool, you'll want to run `git remote rm origin` **before** running `git-review -s` for each repo you use git-review (likely all the repos you just cloned) in order for it to setup the git remote origin correctly (`git remote -v` should be using `ssh://...` for the origin and not `https://...`) . Because removing the origin also removes the tracking info, you'll also want to run `git branch --set-upstream-to=origin/master master` so that `git pull` works (which the `update.sh` script in this repo relies upon to update).
 
 If everything goes to plan, you should be on your way! 🎉
 
