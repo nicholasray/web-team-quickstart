@@ -188,8 +188,8 @@ $wgVectorDefaultSkinVersion = '2';
 # production articles look locally, but be aware that there are some gotchas
 # with using this that don't perfectly match the production environment. Use at
 # your own discretion!
-/* $wgMFContentProviderClass = "MobileFrontend\\ContentProviders\\MwApiContentProvider"; */
-/* $wgMFAlwaysUseContentProvider = true; */
+$wgMFContentProviderClass = "MobileFrontend\\ContentProviders\\MwApiContentProvider";
+$wgMFAlwaysUseContentProvider = true;
 
 $wgLogos = [
 	'icon' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia.png',
@@ -272,8 +272,12 @@ $wgULSPosition = 'interlanguage';
 $wgULSCompactLanguageLinksBetaFeature = false;
 wfLoadExtension( 'UniversalLanguageSelector' );
 
-# Language
-$wgVectorLanguageInHeader = true;
+# Languages
+$wgVectorLanguageInHeader = [
+	'logged_in' => true,
+	'logged_out' => true
+];
+
 # Useful when testing language variants
 $wgUsePigLatinVariant = true;
 
