@@ -179,7 +179,23 @@ $wgDebugLogGroups = [
 	'DBPerformance' => 'cache/mw-database.log',
 	'DBReplication' => 'cache/mw-database.log',
 	'objectcache' => 'cache/mw-database.log',
+	'console' => 'cache/mw-console.log'
 ];
+
+/**
+ * You can `tail -f cache/mw-console.log` and inspect variables using this
+ * global function. Can be a useful alternative to using Xdebug.
+ *
+ * To get a backtrace, pass wfBacktrace().
+ *
+ * @param mixed $var
+ */
+function wfConsoleLog( $var ) {
+	ob_start();
+	var_dump( $var );
+	$result = ob_get_clean();
+	wfDebugLog( 'console', $result );
+}
 
 # Defaults Vector to latest skin for anonymous users instead of legacy.
 $wgVectorDefaultSkinVersion = '2';
