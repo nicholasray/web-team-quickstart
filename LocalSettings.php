@@ -199,6 +199,8 @@ function wfConsoleLog( $var ) {
 
 # Defaults Vector to latest skin for anonymous users instead of legacy.
 $wgVectorDefaultSkinVersion = '2';
+$wgVectorDefaultSkinVersionForNewAccounts = '2';
+$wgVectorDefaultSkinVersionForExistingAccounts = '2';
 
 # Content Provider used to show articles from enwiki. Can be helpful when trying to see how
 # production articles look locally, but be aware that there are some gotchas
