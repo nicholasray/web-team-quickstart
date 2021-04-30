@@ -7,29 +7,20 @@ to install the extensions and skins that the Web team uses most often.
 1) From your `mediawiki` root folder run:
 
 ```sh
-# Vector
-git clone "https://gerrit.wikimedia.org/r/mediawiki/skins/Vector" skins/Vector
+gerritUserName=$(git config gitreview.username)
 
-# Minerva & MobileFrontend
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/Cite" extensions/Cite
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/MobileFrontend" extensions/MobileFrontend
-git clone "https://gerrit.wikimedia.org/r/mediawiki/skins/MinervaNeue" skins/MinervaNeue
-
-# Echo
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/Echo" extensions/Echo
-
-# Popups
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/Popups" extensions/Popups
-
-# Universal Language Selector
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/UniversalLanguageSelector" extensions/UniversalLanguageSelector
-
-# EventLogging
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventLogging" extensions/EventLogging
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventBus" extensions/EventBus
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/EventStreamConfig" extensions/EventStreamConfig
-git clone "https://gerrit.wikimedia.org/r/mediawiki/extensions/WikimediaEvents" extensions/WikimediaEvents
-git clone "https://gerrit.wikimedia.org/r/schemas/event/secondary" extensions/repositories/secondary
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/skins/Vector" skins/Vector
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/skins/MinervaNeue" skins/MinervaNeue
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/Cite" extensions/Cite
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/MobileFrontend" extensions/MobileFrontend
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/Echo" extensions/Echo
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/Popups" extensions/Popups
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/UniversalLanguageSelector" extensions/UniversalLanguageSelector
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/EventLogging" extensions/EventLogging
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/EventBus" extensions/EventBus
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/EventStreamConfig" extensions/EventStreamConfig
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/WikimediaEvents" extensions/WikimediaEvents
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/schemas/event/secondary" extensions/secondary
 ```
 
 2) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
