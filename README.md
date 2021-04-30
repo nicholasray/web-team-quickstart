@@ -4,7 +4,7 @@
 [MediaWiki-Docker](https://www.mediawiki.org/wiki/MediaWiki-Docker), it is time
 to install the extensions and skins that the Web team uses most often.
 
-1) Install `git-review` https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit . It can be helpful commandline tool to interact with gerrit.
+1) Install `git-review` https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit. It can be helpful commandline tool to interact with gerrit. When done installing, make sure you follow the steps to [configure gerrit](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Configuring_git-review).
 
 2) From your `mediawiki` root folder run:
 
