@@ -5,6 +5,8 @@
 2) Clone the MediaWiki core repo:
 
 ```sh
+gerritUserName=$(git config gitreview.username)
+
 git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/core" mediawiki
 ```
 
