@@ -1,12 +1,19 @@
 # Welcome to the Web team! 👋
 
-**After** following all of the steps from `DEVELOPERS.md` described in installing
-[MediaWiki-Docker](https://www.mediawiki.org/wiki/MediaWiki-Docker), it is time
-to install the extensions and skins that the Web team uses most often.
-
 1) Install `git-review` https://www.mediawiki.org/wiki/Gerrit/Tutorial#Prepare_to_work_with_Gerrit. It can be helpful command line tool to interact with gerrit. When done installing, make sure you follow the steps to [configure gerrit](https://www.mediawiki.org/wiki/Gerrit/Tutorial#Configuring_git-review).
 
-2) From your `mediawiki` root folder run:
+2) Clone the MediaWiki core repo:
+
+```sh
+git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/core" mediawiki
+```
+
+3) If on a Mac, follow part 1 and part 2 of the excellent tutorial at
+https://getgrav.org/blog/macos-bigsur-apache-multiple-php-versions to setup
+your Mac with Apache, PHP, and MariaDb. Make sure to point your `DocumentRoot`
+at your `mediawiki` folder and set your the `Listen` port to `8080`.
+
+4) `cd` into your  `mediawiki` folder and run:
 
 ```sh
 gerritUserName=$(git config gitreview.username)
@@ -25,19 +32,19 @@ git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensio
 git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/schemas/event/secondary" extensions/secondary
 ```
 
-3) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
+5) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
 that you can put in your `mediawiki` root directory to configure these properly.
 This file also contains config that generally makes the development workflow
 easier while on the Web team.
 
-4) Run the update script to update the database:
+6) Run the update script to update the database:
 ```
-docker-compose exec mediawiki php maintenance/update.php
+php maintenance/update.php
 ```
 
-5) Populate your database with interwiki prefixes to make languages appear as they are in production.
+7) Populate your database with interwiki prefixes to make languages appear as they are in production.
 ```
-docker-compose exec mediawiki php maintenance/populateInterwiki.php
+php maintenance/populateInterwiki.php
 ```
 
 If everything goes to plan, you should be on your way! 🎉

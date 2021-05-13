@@ -7,4 +7,4 @@ time for i in . extensions/*/ skins/*/; do
 done
 
 # this will update the database schema
-docker-compose exec mediawiki php maintenance/update.php
+php maintenance/update.php
