@@ -13,7 +13,7 @@ git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/core" me
 3) If on a Mac, follow part 1 and part 2 of the excellent tutorial at
 https://getgrav.org/blog/macos-bigsur-apache-multiple-php-versions to setup
 your Mac with Apache, PHP, and MariaDb. Make sure to point your `DocumentRoot`
-at your `mediawiki` folder and set your the `Listen` port to `8080`.
+at your `mediawiki` folder and set your `Listen` port to `8080`.
 
 4) `cd` into your  `mediawiki` folder and run:
 
