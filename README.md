@@ -49,6 +49,10 @@ php maintenance/update.php
 php maintenance/populateInterwiki.php
 ```
 
+8) Copy the `update.sh` and `.htaccess` files found in this repo into your
+`mediawiki` folder. When run the`update.sh` script updates your core,
+extensions, and skins.
+
 If everything goes to plan, you should be on your way! 🎉
 
 Note: You will also find an [update script](update.sh) in this repo which can be used
