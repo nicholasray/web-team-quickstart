@@ -275,12 +275,14 @@ $wgVectorLanguageInHeader = [
 	'logged_out' => true
 ];
 
+# GlobalPreferences
 $wgSharedTables = [ 'user' ]; // Note that 'user_properties' is not included.
 wfLoadExtension( 'GlobalPreferences' );
+
+# Gadgets
+wfLoadExtension( 'Gadgets' );
 
 # User links
 $wgVectorConsolidateUserLinks = [
 	'logged_in' => true
 ];
-
-wfLoadExtension( 'Gadgets' );
