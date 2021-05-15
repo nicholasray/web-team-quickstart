@@ -232,9 +232,7 @@ $wgEventLoggingStreamNames = false;
 // need to register those streams for use by EventLogging, e.g.
 // $wgEventLoggingStreamNames = ['my.stream.name'];
 
-// Point to eventgate dev server. Running in docker container on mac so use
-// docker.for.mac.host.internal (not sure why host.docker.internal isn't
-// working) to connect to eventgate server running on host.
+// Point to eventgate dev server.
 $wgEventServices = [
 	'eventgate' => [ 'url' => 'http://localhost:8192/v1/events' ]
 ];
@@ -277,8 +275,12 @@ $wgVectorLanguageInHeader = [
 	'logged_out' => true
 ];
 
+$wgSharedTables = [ 'user' ]; // Note that 'user_properties' is not included.
+wfLoadExtension( 'GlobalPreferences' );
 
 # User links
 $wgVectorConsolidateUserLinks = [
 	'logged_in' => true
 ];
+
+wfLoadExtension( 'Gadgets' );

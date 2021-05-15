@@ -8,6 +8,7 @@
 gerritUserName=$(git config gitreview.username)
 
 git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/core" mediawiki
+(cd mediawiki && echo "Setting up git review..." && git review -s)
 ```
 
 3) If on a Mac, follow part 1 and part 2 of the excellent tutorial at
@@ -15,24 +16,7 @@ https://getgrav.org/blog/macos-bigsur-apache-multiple-php-versions to setup
 your Mac with Apache, PHP, and MariaDb. Make sure to point your `DocumentRoot`
 at your `mediawiki` folder and set your `Listen` port to `8080`.
 
-4) `cd` into your  `mediawiki` folder and run:
-
-```sh
-gerritUserName=$(git config gitreview.username)
-
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/skins/Vector" skins/Vector
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/skins/MinervaNeue" skins/MinervaNeue
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/Cite" extensions/Cite
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/MobileFrontend" extensions/MobileFrontend
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/Echo" extensions/Echo
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/Popups" extensions/Popups
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/UniversalLanguageSelector" extensions/UniversalLanguageSelector
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/EventLogging" extensions/EventLogging
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/EventBus" extensions/EventBus
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/EventStreamConfig" extensions/EventStreamConfig
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/mediawiki/extensions/WikimediaEvents" extensions/WikimediaEvents
-git clone "ssh://${gerritUserName}@gerrit.wikimedia.org:29418/schemas/event/secondary" extensions/secondary
-```
+4) `cd` into your  `mediawiki` folder and run the `setupRepos.sh` script found in this repo. This will clone the extensions and skins commonly used by the web team as well as setting each one up with git review.
 
 5) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
 that you can put in your `mediawiki` root directory to configure these properly.
