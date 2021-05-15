@@ -41,4 +41,10 @@ for i in "${!repoPaths[@]}"; do
   (cd ${dirPaths[i]} && echo "Setting up git review..." && git review -s)
 done
 
+originalSchemaPath=https://schema.wikimedia.org/repositories/secondary/jsonschema
+modifiedSchemaPath=../secondary/jsonschema
+
+echo "Modifying eventgate.config.yaml to point to secondary jsonschema..."
+sed -i -e "s~$originalSchemaPath~$modifiedSchemaPath~" extensions/EventLogging/devserver/eventgate.config.yaml
+
 printf "\nDONE 🎉"
