@@ -16,14 +16,18 @@ https://getgrav.org/blog/macos-bigsur-apache-multiple-php-versions to setup
 your Mac with Apache, PHP, and MariaDb. Make sure to point your `DocumentRoot`
 at your `mediawiki` folder and set your `Listen` port to `8080`.
 
-4) Go to localhost:8080 and complete the the MediaWiki Web Installer steps.
+4) Go to localhost:8080 and complete the MediaWiki Web Installer steps to
+create the necessary database tables. This will also give you a
+LocalSettings.php that you should place inside your `mediawiki` folder.
 
-5) `cd` into your  `mediawiki` folder and run the `setupRepos.sh` script found in this repo. This will clone the extensions and skins commonly used by the web team as well as setting each one up with git review.
+5) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
+that has config necessary to run the extensions/skins in step 6. Copy and paste
+all of the options under "Personal options follow:" from that file to the
+bottom of the LocalSettings.php file that the Web Installer generated for you.
 
-6) Next, you'll find a [LocalSettings.php](LocalSettings.php) file in this repo
-that you can put in your `mediawiki` root directory to configure these properly.
-This file also contains config that generally makes the development workflow
-easier while on the Web team.
+6) `cd` into your  `mediawiki` folder and run the `setupRepos.sh` script found
+in this repo. This will clone the extensions and skins commonly used by the web
+team as well as setting each one up with git review.
 
 7) Run the update script to update the database:
 ```
