@@ -16,7 +16,7 @@ https://getgrav.org/blog/macos-bigsur-apache-multiple-php-versions to setup
 your Mac with Apache, PHP, and MariaDb. Make sure to point your `DocumentRoot`
 at your `mediawiki` folder and set your `Listen` port to `8080`.
 
-4) Go to localhost:8080 and complete the MediaWiki Web Installer steps to
+4) Go to `localhost:8080` and complete the MediaWiki Web Installer steps to
 create the necessary database tables. This will also give you a
 LocalSettings.php that you should place inside your `mediawiki` folder.
 
