@@ -19,6 +19,24 @@ repoPaths=(
   "schemas/event/secondary"
 )
 
+mirrorPaths=(
+  "git@github.com:wikimedia/Vector.git"
+  "git@github.com:wikimedia/mediawiki-skins-MinervaNeue.git"
+  "git@github.com:wikimedia/mediawiki-extensions-Cite.git"
+  "git@github.com:wikimedia/mediawiki-extensions-MobileFrontend.git"
+  "git@github.com:wikimedia/mediawiki-extensions-Echo.git"
+  "git@github.com:wikimedia/mediawiki-extensions-Popups.git"
+  "git@github.com:wikimedia/mediawiki-extensions-UniversalLanguageSelector.git"
+  "git@github.com:wikimedia/mediawiki-extensions-Gadgets.git"
+  "git@github.com:wikimedia/mediawiki-extensions-GlobalPreferences.git"
+  "git@github.com:wikimedia/mediawiki-extensions-EventLogging.git"
+  "git@github.com:wikimedia/mediawiki-extensions-EventBus.git"
+  "git@github.com:wikimedia/mediawiki-extensions-EventStreamConfig.git"
+  "git@github.com:wikimedia/mediawiki-extensions-WikimediaEvents.git"
+  "git@github.com:wikimedia/schemas-event-secondary.git"
+)
+
+
 dirPaths=(
   "skins/Vector"
   "skins/MinervaNeue"
@@ -39,12 +57,8 @@ dirPaths=(
 for i in "${!repoPaths[@]}"; do
   git clone ssh://$gerritUserName@gerrit.wikimedia.org:29418/${repoPaths[i]} ${dirPaths[i]}
   (cd ${dirPaths[i]} && echo "Setting up git review..." && git review -s)
+  echo "${mirrorPaths[i]}"
+  (cd ${dirPaths[i]} && echo "Adding a mirror remote..." && git remote add mirror ${mirrorPaths[i]})
 done
-
-originalSchemaPath=https://schema.wikimedia.org/repositories/secondary/jsonschema
-modifiedSchemaPath=../secondary/jsonschema
-
-echo "Modifying eventgate.config.yaml to point to secondary jsonschema..."
-sed -i -e "s~$originalSchemaPath~$modifiedSchemaPath~" extensions/EventLogging/devserver/eventgate.config.yaml
 
 printf "\nDONE 🎉"
