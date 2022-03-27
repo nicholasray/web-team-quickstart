@@ -11,6 +11,9 @@
 # https://www.mediawiki.org/wiki/Manual:Configuration_settings
 
 # Protect against web entry
+
+use function Symfony\Component\String\u;
+
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
@@ -29,10 +32,10 @@ $wgMetaNamespace = "My_wiki";
 $wgScriptPath = "";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://localhost:8080";
+$wgServer = WebRequest::detectServer();;
 
 ## The URL path to static resources (images, scripts, etc.)
-$wgResourceBasePath = "$wgServer";
+// $wgResourceBasePath = "$wgServer";
 
 ## The URL paths to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
@@ -131,6 +134,7 @@ $wgDefaultSkin = "vector";
 # ============================================================================
 # Personal options follow:
 # ============================================================================
+$wgEnableJavaScriptTest = true;
 
 $wgShowExceptionDetails = true;
 /* error_reporting( -1 ); */
@@ -142,7 +146,7 @@ wfLoadSkin( 'Vector' );
 # the db logging to mw-database.log instead.
 # WARNING: Enabling logging to mw-www-debug and mw-database has serious
 # performance costs! Only enable when necessary.
-/* $wgDebugLogFile = 'cache/mw-www-debug.log'; */
+// $wgDebugLogFile = 'cache/mw-www-debug.log';
 $wgDebugLogGroups = [
 	/* 'DBQuery' => 'cache/mw-database.log', */
 	/* 'DBConnection' => 'cache/mw-database.log', */
@@ -152,32 +156,12 @@ $wgDebugLogGroups = [
 	'console' => 'cache/mw-console.log',
 ];
 
-/**
- * You can `tail -f cache/mw-console.log` and inspect variables using this
- * global function. Can be a useful alternative to using Xdebug.
- *
- * To get a backtrace, pass wfBacktrace().
- *
- * @param mixed $var
- */
-function wfConsoleLog( $var ) {
-	ob_start();
-	var_dump( $var );
-	$result = ob_get_clean();
-	wfDebugLog( 'console', $result );
-}
-
-# Defaults Vector to latest skin for anonymous users instead of legacy.
-$wgVectorDefaultSkinVersion = '2';
-$wgVectorDefaultSkinVersionForNewAccounts = '2';
-$wgVectorDefaultSkinVersionForExistingAccounts = '2';
-
 # Content Provider used to show articles from enwiki. Can be helpful when trying to see how
 # production articles look locally, but be aware that there are some gotchas
 # with using this that don't perfectly match the production environment. Use at
 # your own discretion!
-$wgMFContentProviderClass = "MobileFrontend\\ContentProviders\\MwApiContentProvider";
-$wgMFAlwaysUseContentProvider = true;
+$wgMFContentProviderClass = "MobileFrontendContentProviders\\MwApiContentProvider";
+wfLoadExtension( 'MobileFrontendContentProvider' );
 
 $wgLogos = [
 	'icon' => 'https://en.wikipedia.org/static/images/mobile/copyright/wikipedia.png',
@@ -201,6 +185,18 @@ $wgFragmentMode = [ 'html5', 'legacy' ];
 
 # MobileFrontend and Minerva
 wfLoadExtension( 'Cite' );
+$wgMFUseDesktopSpecialHistoryPage = [ // T219895
+	'base' => false,
+	'beta' => false,
+	'amc' => true,
+];
+
+$wgMFUseDesktopContributionsPage = [
+	'base' => false,
+	'beta' => false,
+	'amc' => true,
+];
+
 wfLoadExtension( 'MobileFrontend' );
 wfLoadSkin( 'MinervaNeue' );
 
@@ -242,6 +238,30 @@ $wgEventServiceDefault = 'eventgate';
 # Turn off when running PHPUnit tests (the tests will complain if you don't).
 $wgEnableEventBus = 'TYPE_ALL';
 
+$wgWMEVectorPrefDiffSalt = 'secret';
+// $wgEventStreams = [
+// 	[
+// 	'stream' => 'mediawiki.skin_diff',
+// 	'schema_title' => 'analytics/pref_diff',
+// 	'canary_events_enabled' => true,
+// 	'destination_event_service' => 'eventgate',
+// 	],
+// ];
+//
+// $wgEventStreams = [
+// 	[
+// 		'stream' => 'mediawiki.reading_depth',
+// 		'schema_title' => 'analytics/mediawiki/web_ui_reading_depth',
+// 		'canary_events_enabled' => true,
+// 		'destination_event_service' => 'eventgate',
+// 	]
+// ];
+
+// $wgEventLoggingStreamNames = [
+// 		'mediawiki.skin_diff',
+// 		// 'mediawiki.reading_depth'
+// ];
+
 # EventLogging
 # Note: In order for EventLoggging to pick up your local schemas, make sure
 # EventLogging/devserver/eventgate.config.yaml `schema_base_uris` point to:
@@ -255,11 +275,11 @@ wfLoadExtension( 'WikimediaEvents' );
 
 # WVUI Search
 $wgVectorUseWvuiSearch = true;
-$wgVectorSearchHost = 'en.wikipedia.org';
 $wgVectorWvuiSearchOptions = [
 	"showThumbnail" => true,
 	"showDescription" => true
 ];
+// $wgVectorSearchHost = 'en.wikipedia.org';
 
 # Universal Language Selector
 $wgULSPosition = 'interlanguage';
@@ -272,8 +292,17 @@ $wgUsePigLatinVariant = true;
 # Languages
 $wgVectorLanguageInHeader = [
 	'logged_in' => true,
+	'logged_out' => true,
+];
+$wgVectorLanguageInMainPageHeader = [
+	"logged_in" => false,
+	"logged_out" => false,
+];
+$wgVectorLanguageAlertInSidebar =[
+	'logged_in' => true,
 	'logged_out' => true
 ];
+$wgVectorLanguageInHeaderTreatmentABTest = false;
 
 # GlobalPreferences
 $wgSharedTables = [ 'user' ]; // Note that 'user_properties' is not included.
@@ -282,7 +311,184 @@ wfLoadExtension( 'GlobalPreferences' );
 # Gadgets
 wfLoadExtension( 'Gadgets' );
 
-# User links
-$wgVectorConsolidateUserLinks = [
-	'logged_in' => true
+// wfLoadExtension( 'QuickSurveys' );
+
+// const QS_ANSWERS_MULTI_CHOICE =  [
+// 	'ext-quicksurveys-example-internal-survey-answer-positive',
+// 	'ext-quicksurveys-example-internal-survey-answer-neutral',
+// 	'ext-quicksurveys-example-internal-survey-answer-negative'
+// ];
+
+// // Applies to all surveys
+// const QS_DEFAULTS = [
+// 	// Who is the survey for? All fields are optional.
+// 	'audience' => [
+// 		'minEdits' => 0,
+// 		'anons' => false,
+// 		'maxEdits' => 500,
+// 		'registrationStart' => '2018-01-01',
+// 		'registrationEnd' => '2080-01-31',
+// 		// You must have CentralNotice extension installed in order to limit audience by country
+// 		// 'countries' => [ 'US', 'UK' ]
+// 	],
+// 	// The i18n key of the privacy policy text
+// 	'privacyPolicy' => 'ext-quicksurveys-example-external-survey-privacy-policy',
+// 	// Whether the survey is enabled
+// 	'enabled' => true,
+// 	// Percentage of users that will see the survey
+// 	'coverage' => 1,
+// 	// For each platform (desktop, mobile), which version of it is targeted
+// 	'platforms' => [
+// 		'desktop' => [ 'stable' ],
+// 		'mobile' => [ 'stable' ]
+// 	],
+// ];
+
+// $wgQuickSurveysConfig = [
+// 	// Example of an internal survey
+// 	[
+// 		// Survey name
+// 		'name' => 'internal example survey',
+// 		// Internal or external link survey?
+// 		'type' => 'internal',
+// 		// The respondent can choose one answer from a list.
+// 		'layout' => 'single-answer',
+// 		// Survey question message key
+// 		'question' => 'ext-quicksurveys-example-internal-survey-question',
+// 		// The message key of the description of the survey. Displayed immediately below the survey question.
+// 		//'description' => 'ext-quicksurveys-example-internal-survey-description',
+// 		// Possible answer message keys for positive, neutral, and negative
+// 		'answers' => QS_ANSWERS_MULTI_CHOICE,
+// 		// Label for the optional free form text answer
+// 		'freeformTextLabel' => 'ext-quicksurveys-example-internal-survey-freeform-text-label',
+// 		// Whether to shuffle the display of the answers
+// 		'shuffleAnswersDisplay' => true,
+// 	] + QS_DEFAULTS,
+
+// 	[
+// 		// Survey name
+// 		'name' => 'internal multi answer example survey',
+// 		// Internal or external link survey?
+// 		'type' => 'internal',
+// 		// The respondent can choose one answer from a list.
+// 		'layout' => 'multiple-answer',
+// 		// Survey question message key
+// 		'question' => 'ext-quicksurveys-example-internal-survey-question',
+// 		// The message key of the description of the survey. Displayed immediately below the survey question.
+// 		//'description' => 'ext-quicksurveys-example-internal-survey-description',
+// 		// Possible answer message keys for positive, neutral, and negative
+// 		'answers' => QS_ANSWERS_MULTI_CHOICE,
+// 		// Label for the optional free form text answer
+// 		'freeformTextLabel' => 'ext-quicksurveys-example-internal-survey-freeform-text-label',
+// 		// Whether to shuffle the display of the answers
+// 		'shuffleAnswersDisplay' => true,
+// 		'targetAudience' => [
+// 			'os' => [ 'KaiOS' ]
+// 		]
+// 	] + QS_DEFAULTS,
+// 	// Example of an external survey
+// 	[
+// 		'name' => 'external example survey',
+// 		// Internal or external link survey
+// 		'type' => 'external',
+// 		// Survey question message key
+// 		'question' => 'ext-quicksurveys-example-external-survey-question',
+// 		// The i18n key of the description of the survey
+// 		'description' => 'ext-quicksurveys-example-external-survey-description',
+// 		// External link to the survey
+// 		'link' => 'ext-quicksurveys-example-external-survey-link',
+// 		// Parameter to add to external link
+// 		'instanceTokenParameterName' => 'parameterName',
+// 	] + QS_DEFAULTS,
+// ];
+
+wfLoadExtension( 'BetaFeatures' );
+
+// wfLoadExtension( 'CentralNotice' );
+// $wgNoticeInfrastructure = true;
+// $wgNoticeProjects = array( 'centralnoticeproject' ); # 'centralnoticeproject' can be any string
+// $wgNoticeProject = 'centralnoticeproject'; # must be the same as above
+// $wgCentralHost = 'localhost';
+// $wgCentralSelectedBannerDispatcher = 'http://localhost/mw/index.php?title=Special:BannerLoader';
+// $wgCentralDBname = $wgDBname; # the same as $wgDBname
+// $wgCentralNoticeGeoIPBackgroundLookupModule = 'ext.centralNotice.freegeoipLookup';
+
+$wgHooks['SkinTemplateNavigation::Universal'][] = function ( $skinTemplate, &$links ) {
+        $links['user-menu']['jonlink'] = [
+                'link-class' => [ 'jr' ],
+                'class' => [ 'jr2' ],
+                'text' => 'I am an extension',
+                'href' => 'https://jdlrobson.com'
+        ];
+};
+
+$wgVectorStickyHeader = [
+	'logged_in' => true,
+	'logged_out' => false 
 ];
+
+// wfLoadExtension( 'RelatedArticles' );
+// $wgRelatedArticlesFooterWhitelistedSkins = ['minerva'];
+
+wfLoadExtension( 'Parsoid', "vendor/wikimedia/parsoid/extension.json" );
+wfLoadExtension( 'VisualEditor' );
+// Needed to prevent: RuntimeException: strtolower() doesn't work -- please set the locale to C or a UTF-8 variant such as C.UTF-8.
+$wgShellLocale = "C";
+$wgDefaultUserOptions['visualeditor-enable'] = 1;
+$wgEnableRestAPI = true;
+$wgGroupPermissions['user']['writeapi'] = true;
+
+$wgWMEWebUIScrollTrackingSamplingRate = 1;
+$wgWMEWebUIScrollTrackingTimeToWaitBeforeScrollUp = 0;
+$wgWMEMobileWebUIActionsTracking = 1;
+$wgWMEReadingDepthSamplingRate = 1;
+
+$wgVectorWebABTestEnrollment = [
+	'name' => 'skin-vector-toc-experiment',
+	'enabled' => true,
+	'buckets' => [
+		'unsampled' => [
+			'samplingRate' => 0
+		],
+		'control' => [
+			'samplingRate' => 0.5
+		],
+		'treatment' => [
+			'samplingRate' => 0.5
+		],
+	]
+];
+
+// $wgVectorWebABTestEnrollment = [
+// 	'name' => 'vector.sticky_header',
+// 	'enabled' => false,
+// 	'buckets' => [
+// 		'unsampled' => [
+// 			'samplingRate' => 0
+// 		],
+// 		'control' => [
+// 			'samplingRate' => 0
+// 		]
+// 		'stickyHeaderDisabled' => [
+// 			'samplingRate' => 0
+// 		],
+// 		'stickyHeaderEnabledTreatment' => [
+// 			'samplingRate' => 1
+// 		],
+// 	]
+// ];
+
+$wgVectorSkinMigrationMode = true;
+
+// $wgParserCacheType = CACHE_NONE;
+$wgVectorTableOfContents = [
+	"default" => true,
+	// "experiment" => [
+	// 	"enabled" => true,
+	// 	"strategy" => "articleId",
+	// 	"samplingRatio" => 1,
+	// 	"buckets" => [ "control", "treatment" ]
+	// ]
+];
+
+$wgVectorTableOfContentsCollapseAtCount = 20;
